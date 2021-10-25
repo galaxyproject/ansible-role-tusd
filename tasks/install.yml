@@ -29,11 +29,11 @@
 
     - name: Set current tusd version fact
       set_fact:
-          __tusd_current_version: >-
-              {{ __tusd_current_version_response.stdout_lines
-                | select('search', '^Version: v.*')
-                | first
-                | regex_replace('^Version: (v.*)$', '\1') }}
+        __tusd_current_version: >-
+            {{ __tusd_current_version_response.stdout_lines
+              | select('search', '^Version: v.*')
+              | first
+              | regex_replace('^Version: (v.*)$', '\1') }}
 
   when: __tusd_exists.stat.exists
 
@@ -75,5 +75,5 @@
         path: "{{ __tusd_tempdir.path }}"
         state: absent
       when: __tusd_tempdir is defined
-      
+
   when: not __tusd_exists.stat.exists or __tusd_current_version != tusd_version
