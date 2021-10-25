@@ -12,7 +12,6 @@ UMask=022
 Type=simple
 User={{ item.user }}
 Group={{ item.group }}
-WorkingDirectory={{ item.home }}
 TimeoutStartSec=10
 ExecStart={{ tusd_path }} {{ item.args | map('quote') | join(' ') }}
 Restart=always

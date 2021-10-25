@@ -12,8 +12,10 @@ tusd_path: /usr/local/sbin/tusd
 #tusd_group: omit
 #tusd_mode: 0755
 
+# If using Linux, you can install systemd service units to start and manage your tusd instances
 tusd_systemd: true
-tusd_instance_dir: /etc/tusd
+
+# Configuration for systemd-managed tusd instances - see the README for syntax
 tusd_instances: []
 
 # This is used  to download the correct release tarball, which are named like
