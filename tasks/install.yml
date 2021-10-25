@@ -64,8 +64,8 @@
         remote_src: true
         src: "{{ __tusd_tempdir.path }}/{{ tusd_binary_platform }}/tusd"
         dest: "{{ tusd_path }}"
-        #owner:
-        #group:
+        owner: "{{ tusd_owner | default(omit) }}"
+        group: "{{ tusd_group | default(omit) }}"
         mode: "{{ tusd_mode | default('0755') }}"
 
   always:
