@@ -4,8 +4,7 @@
 
 [Unit]
 Description=tusd server for {{ item.name }}
-After=network.target
-After=time-sync.target
+After={{ tusd_systemd_target }}
 
 [Service]
 UMask=022
