@@ -8,9 +8,9 @@ tusd_version: latest
 tusd_path: /usr/local/sbin/tusd
 
 # Owner, group, mode of the tusd binary
-#tusd_owner: omit
-#tusd_group: omit
-#tusd_mode: 0755
+# tusd_owner: omit
+# tusd_group: omit
+# tusd_mode: 0755
 
 # Systemd
 # If using Linux, you can install systemd service units to start and manage your tusd instances
@@ -31,5 +31,6 @@ tusd_arch: "{{ tusd_arch_map[ansible_architecture] | default(ansible_architectur
 tusd_archive: "{{ (tusd_os == 'linux') | ternary('tar.gz', 'zip') }}"
 
 # You should generally not set this directly
+tusd_release_url_base: https://github.com/tus/tusd/releases/download
 tusd_binary_platform: "tusd_{{ tusd_os }}_{{ tusd_arch }}"
-tusd_binary_archive_url: "https://github.com/tus/tusd/releases/download/{{ tusd_version }}/{{ tusd_binary_platform }}.{{ tusd_archive }}"
+tusd_binary_archive_url: "{{ tusd_release_url_base }}/{{ tusd_version }}/{{ tusd_binary_platform }}.{{ tusd_archive }}"
