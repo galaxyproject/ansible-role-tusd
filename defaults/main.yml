@@ -23,7 +23,11 @@ tusd_instances: []
 # This is used  to download the correct release tarball, which are named like
 # 'tusd_{{ tusd_os }}_{{ tusd_arch }}.{{ tusd_archive }}'
 tusd_os: "{{ ansible_system | lower }}"
-tusd_arch: "{{ (ansible_architecture == 'x86_64') | ternary ('amd64', ansible_architecture) }}"
+# Map ansible_architecture to the naming convention in https://github.com/tus/tusd/releases
+tusd_arch_map:
+  x86_64: amd64
+  aarch64: arm64
+tusd_arch: "{{ tusd_arch_map[ansible_architecture] | default(ansible_architecture) }}"
 tusd_archive: "{{ (tusd_os == 'linux') | ternary('tar.gz', 'zip') }}"
 
 # You should generally not set this directly
